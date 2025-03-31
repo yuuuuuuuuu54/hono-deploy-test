@@ -43,3 +43,4 @@ Thumbs.db
 # Wrangler
 .wrangler/
 .dev.vars
+wrangler.jsonc

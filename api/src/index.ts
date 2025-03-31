@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/d1';
 import { Hono } from 'hono';
-import { usersSchema } from './db/schema';
+import { memoSchema, usersSchema } from './db/schema';
 
 type Bindings = {
 	DB: D1Database;
@@ -23,5 +23,22 @@ app.get('/test', async (c) => {
 	const result = await db.select().from(usersSchema);
 	return c.json(result);
 });
+
+app.post('/test/memo', async (c) => {
+	const db = drizzle(c.env.DB);
+	const result = await db.insert(memoSchema).values({
+		title: 'test',
+		content: 'test',
+	});
+	return c.json(result);
+});
+
+app.get('/test/memo', async (c) => {
+	const db = drizzle(c.env.DB);
+	const result = await db.select().from(memoSchema);
+	return c.json(result);
+});
+
+
 
 export default app;

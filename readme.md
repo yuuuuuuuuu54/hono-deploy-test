@@ -11,3 +11,13 @@ npx drizzle-kit generate
 
 npx wrangler d1 migrations apply test-drizzle --local
 これでローカルのdbに反映する
+
+
+
+スキーマの変更をしたら
+```
+curl http://localhost:8787/openapi.json > openapi.json
+npx orval --config orval.config.ts
+```
+
+いづれもフロントで実行すること。

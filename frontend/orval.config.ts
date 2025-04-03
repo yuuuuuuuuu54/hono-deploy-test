@@ -1,5 +1,8 @@
 // orval.config.ts
 import { defineConfig } from "orval";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
   todo: {
@@ -7,7 +10,7 @@ export default defineConfig({
     output: {
       target: "./src/api/todo.ts", // 生成する場所
       client: "react-query", // axios | react-query
-      baseUrl: "http://localhost:8787",
+      baseUrl: process.env.VITE_API_URL,
     },
   },
 });

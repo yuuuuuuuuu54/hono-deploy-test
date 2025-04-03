@@ -21,7 +21,7 @@ function App() {
     }, {
       onSuccess: () => {
         setNewTodo('')
-        queryClient.invalidateQueries({ queryKey: ['http://localhost:8787/todos'] })
+        queryClient.invalidateQueries({ queryKey: [`${import.meta.env.VITE_API_URL}/todos`] })
       }
     })
   }

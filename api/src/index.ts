@@ -6,12 +6,30 @@ import { cors } from 'hono/cors';
 
 type Bindings = {
 	DB: D1Database;
+	FRONTEND_URL: string;
 };
 
 const openApiapp = new OpenAPIHono<{ Bindings: Bindings }>();
 
 // CORSミドルウェアを追加
-openApiapp.use('/*', cors());
+openApiapp.use('/*', async (c, next) => {
+	console.log('CORS middleware - FRONTEND_URL:', c.env.FRONTEND_URL);
+	const corsMiddleware = cors({
+		origin: c.env.FRONTEND_URL,
+		allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+		allowHeaders: ['Content-Type', 'Authorization'],
+		exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
+		maxAge: 600,
+		credentials: true,
+	});
+	return corsMiddleware(c, next);
+});
+
+// エラーハンドリングを追加
+openApiapp.onError((err, c) => {
+	console.error('Error:', err);
+	return c.json({ error: err.message }, 500);
+});
 
 const getTodosRoute = createRoute({
 	method: 'get',

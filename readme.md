@@ -37,7 +37,8 @@ npx orval --config orval.config.ts
 
 今回は単純な作成と削除だけを実行するアプリケーションを作成する。
 
-メモ
+### メモ
+
 orvalで生成した関数がURLをハードコーディングしてしまう問題の解消方法(chat)
 
 axiosInstance を使って baseURL を後付けで設定する（推奨）

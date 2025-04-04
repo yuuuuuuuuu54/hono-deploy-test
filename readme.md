@@ -21,3 +21,15 @@ npx orval --config orval.config.ts
 ```
 
 いづれもフロントで実行すること。
+
+使用スタック
+* cloudflare workers
+* cloudflare d1
+* hono
+* typescript
+* zod
+* openAPI
+* orval
+
+上記の様な構成でopenapiのjsonファイルからorvalを使用してクライアント側のAPIコールの関数を作成して通信をする。
+デプロイにはworkersを使用する予定

@@ -45,11 +45,9 @@ orval は axios インスタンスを使ったカスタマイズが可能です�
 以下のようにすれば、生成された関数にはURLが書かれず、axios側で制御できます。
 
 ステップ：
-axiosInstance.ts を作成
+`axiosInstance.ts` を作成
 
-ts
-コピーする
-編集する
+```
 // src/api/axiosInstance.ts
 import axios from 'axios';
 
@@ -57,10 +55,9 @@ export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000',
 });
 orval にこの axios を使わせる
+```
 
-ts
-コピーする
-編集する
+```
 // orval.config.ts
 export default {
   myApi: {
@@ -77,14 +74,14 @@ export default {
     },
   },
 };
+```
 ✅ こうするとどうなる？
 orval が生成する関数はこうなる：
 
-ts
-コピーする
-編集する
+```
 // 自動生成されたコード（抜粋）
 export const getUser = (): Promise<User> => {
   return axiosInstance.get('/user'); // ← baseURL は別定義
 };
 💡 baseURL は環境変数（.env.production, .env.development など）で管理できる！
+```

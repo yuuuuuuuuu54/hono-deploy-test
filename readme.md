@@ -30,6 +30,10 @@ npx orval --config orval.config.ts
 * zod
 * openAPI
 * orval
+* react
 
 上記の様な構成でopenapiのjsonファイルからorvalを使用してクライアント側のAPIコールの関数を作成して通信をする。
 デプロイにはworkersを使用する予定
+
+今回は単純な作成と削除だけを実行するアプリケーションを作成する。
+

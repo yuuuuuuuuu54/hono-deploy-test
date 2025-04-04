@@ -31,6 +31,7 @@ openApiapp.onError((err, c) => {
 	return c.json({ error: err.message }, 500);
 });
 
+// todo 取得用のルーティング
 const getTodosRoute = createRoute({
 	method: 'get',
 	path: '/todos',
@@ -58,6 +59,7 @@ openApiapp.openapi(getTodosRoute, async (c) => {
 	);
 });
 
+// todo 作成用のルーティング
 const createTodoRoute = createRoute({
 	method: 'post',
 	path: '/todo',

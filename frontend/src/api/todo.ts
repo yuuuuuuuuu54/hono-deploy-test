@@ -19,20 +19,26 @@ import type {
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { PostTodoBody, Todo, Todos } from "../todo.schemas";
+import { axiosInstance } from "../axiosInstance";
+export interface Todo {
+  id: string;
+  title: string;
+  completed: boolean;
+}
 
-import { axiosInstance } from "../../axiosInstance";
+export type Todos = Todo[];
+
+export type PostTodoBody = {
+  title: string;
+  completed: boolean;
+};
 
 export const getTodos = (signal?: AbortSignal) => {
-  return axiosInstance<Todos>({
-    url: `http://localhost:8787/todos`,
-    method: "GET",
-    signal,
-  });
+  return axiosInstance<Todos>({ url: `/todos`, method: "GET", signal });
 };
 
 export const getGetTodosQueryKey = () => {
-  return [`http://localhost:8787/todos`] as const;
+  return [`/todos`] as const;
 };
 
 export const getGetTodosQueryOptions = <
@@ -133,7 +139,7 @@ export function useGetTodos<
 
 export const postTodo = (postTodoBody: PostTodoBody, signal?: AbortSignal) => {
   return axiosInstance<Todo>({
-    url: `http://localhost:8787/todo`,
+    url: `/todo`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
     data: postTodoBody,

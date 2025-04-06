@@ -11,6 +11,18 @@ export default defineConfig({
       target: "./src/api/todo.ts", // 生成する場所
       client: "react-query", // axios | react-query
       baseUrl: process.env.VITE_API_URL,
+      override: {
+        mutator: {
+          path: "./src/axiosInstance.ts",
+          name: "axiosInstance",
+        },
+      },
+      mock: false,
+      mode: "tags-split",
+      clean: true,
+    },
+    hooks: {
+      afterAllFilesWrite: "prettier --write",
     },
   },
 });

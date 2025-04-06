@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { useGetTodos, usePostTodo } from './api/todo';
+import { useGetTodos, usePostTodo } from './api/default/default';
 import { useQueryClient } from '@tanstack/react-query';
 
 function App() {

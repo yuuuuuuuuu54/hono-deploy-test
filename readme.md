@@ -1,3 +1,6 @@
+# こちらのプロジェクトは実際にCloudflare workersとCloudflare Pages上にデプロイまで行いましたがすでにプロジェクトを閉じています。
+
+
 https://qiita.com/xYasi/items/925dc328f23f75c7cad0
 これがローカルで開発するのに役立ちそうな情報
 

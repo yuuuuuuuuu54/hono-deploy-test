@@ -42,11 +42,9 @@ npx orval --config orval.config.ts
 orvalで生成した関数がURLをハードコーディングしてしまう問題の解消方法(chat)
 
 axiosInstance を使って baseURL を後付けで設定する（推奨）
-orval は axios インスタンスを使ったカスタマイズが可能です。
-以下のようにすれば、生成された関数にはURLが書かれず、axios側で制御できます。
+orval は axios インスタンスを使ったカスタマイズが可能。
+以下のようにすれば、生成された関数にはURLが書かれず、axios側で制御できる。
 
-ステップ：
-`axiosInstance.ts` を作成
 
 ```
 // src/api/axiosInstance.ts
@@ -76,13 +74,11 @@ export default {
   },
 };
 ```
-✅ こうするとどうなる？
-orval が生成する関数はこうなる：
+orval が生成する関数
 
 ```
-// 自動生成されたコード（抜粋）
 export const getUser = (): Promise<User> => {
   return axiosInstance.get('/user'); // ← baseURL は別定義
 };
-💡 baseURL は環境変数（.env.production, .env.development など）で管理できる！
+💡 baseURL は環境変数で管理できる！
 ```
